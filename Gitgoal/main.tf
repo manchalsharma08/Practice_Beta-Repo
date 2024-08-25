@@ -37,3 +37,16 @@ location = "westus"
 resource_group_name = "man-rg"
 allocation_method = "Static"
 }
+
+resource "azurerm_network_interface" "nic" {
+     name = "man-nic"
+     location ="westus"
+     resource_group_name ="man-rg"
+
+ip_configuration {
+     name = "nicip"
+     subnet_id = azurerm_subnet.subnet.id
+     private_ip_address_allocation = "Dynamic"
+     public_ip_address_id = azurerm_public_ip.pip.id
+}
+}
