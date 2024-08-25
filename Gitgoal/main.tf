@@ -32,10 +32,3 @@ virtual_network_name = "man-vnet"
 address_prefix = ["10.0.1.0/24"]
 }
 
-resource "azurerm_public_ip" "pip" {
-name= "man-pip"
-location = "westus"
-resource_group_name = "man-rg"
-allocation_method = "Static"
-}
-
