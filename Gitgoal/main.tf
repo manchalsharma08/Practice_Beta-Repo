@@ -50,3 +50,13 @@ ip_configuration {
      public_ip_address_id = azurerm_public_ip.pip.id
 }
 }
+
+resource "azurerm_linux_virtual_machine" "vm" {
+   name = "man-vm"
+location = "westus"
+resource_group_name = "man-rg"
+size = "Standard_F2"
+admin_usernamw = "adminuser"
+admin_passward = "admin@12345"
+network_interface_ids = [azurerm.resource_network_interface.id]
+}
