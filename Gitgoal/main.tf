@@ -37,3 +37,26 @@ location = "westus"
 resource_group_name = "man-rg"
 allocation_method = "Static"
 }
+
+resource "azurerm_network_interface" "nic" {
+     name = "man-nic"
+     location ="westus"
+     resource_group_name ="man-rg"
+
+ip_configuration {
+     name = "nicip"
+     subnet_id = azurerm_subnet.subnet.id
+     private_ip_address_allocation = "Dynamic"
+     public_ip_address_id = azurerm_public_ip.pip.id
+}
+}
+
+resource "azurerm_linux_virtual_machine" "vm" {
+   name = "man-vm"
+location = "westus"
+resource_group_name = "man-rg"
+size = "Standard_F2"
+admin_usernamw = "adminuser"
+admin_passward = "admin@12345"
+network_interface_ids = [azurerm.resource_network_interface.id]
+}
